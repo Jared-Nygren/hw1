@@ -106,12 +106,70 @@
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
 
+DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS characters;
+
 -- Create new tables, according to your domain model
 -- TODO!
+
+CREATE TABLE actors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT
+);
+
+CREATE TABLE movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  release_year TEXT,
+  MPAA_Rating TEXT
+);
+
+CREATE TABLE studios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT
+);
+
+CREATE TABLE characters (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT
+);
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+
+INSERT INTO actors (name) VALUES 
+("Christian Bale"),
+("Michael Caine"),
+("Liam Neeson"),
+("Katie Holmes"),
+("Gary Oldman"),
+("Heath Ledger"),
+("Aaron Eckhart"),
+("Maggie Gyllenhaal"),
+("Tom Hardy"),
+('Joseph Gordon-Levitt'),
+("Anne Hathaway");
+
+INSERT INTO characters (name) VALUES
+('Bruce Wayne'),
+('Alfred'),
+("Ra's Al Ghul"),
+('Rachel Dawes'),
+('Commissioner Gordon'),
+('Joker'),
+('Harvey Dent'),
+('Bane'),
+('John Blake'),
+('Selina Kyle');
+
+INSERT INTO movies (title) VALUES
+('Batman Begins'),
+('The Dark Knight'),
+('The Dark Knight Rises');
+
 
 -- Prints a header for the movies output
 .print "Movies"

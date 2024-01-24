@@ -126,7 +126,7 @@ CREATE TABLE movies (
   release_year INTEGER,
   MPAA_rating TEXT,
   studios_id INTEGER,
-  FOREIGN KEY (studios_id) REFERENCES studios(id)
+  FOREIGN KEY (studios_id) REFERENCES studios(id) -- see note below **
 );
 
 CREATE TABLE studios (
@@ -139,14 +139,17 @@ CREATE TABLE characters (
   name TEXT
 );
 
+-- ** I had some difficulty creating this junction table so I used ChatGPT to help troubleshoot. It helped me better understand how to establish the foreign key relationships between the tables and rows refferenced.
+
 CREATE TABLE movie_roles (
   movie_id INTEGER,
   actor_id INTEGER,
   character_id INTEGER,
-  FOREIGN KEY (movie_id) REFERENCES movies(id),
+  FOREIGN KEY (movie_id) REFERENCES movies(id), -- see note above **
   FOREIGN KEY (actor_id) REFERENCES actors(id),
   FOREIGN KEY (character_id) REFERENCES characters(id)
 );
+
 
 
 -- Insert data into your database that reflects the sample data shown above
@@ -211,11 +214,13 @@ INSERT INTO movie_roles (movie_id, actor_id, character_id) VALUES
 -- The SQL statement for the movies output
 -- TODO!
 
+-- **Learned to use "AS" for a column name as an alias for clarity as "name" is used in multiple tables 
+
 SELECT 
     movies.title, 
     movies.release_year, 
     movies.MPAA_rating, 
-    studios.name AS studio_name
+    studios.name AS studio_name -- see note above 
 FROM 
     movies
 INNER JOIN studios ON movies.studios_id = studios.id;
